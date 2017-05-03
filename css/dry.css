@@ -1,6 +1,347 @@
 /**
- * Site specific DRY styles
- * Version 1.0
- */
+* Site specific DRY styles
+* Version 1.0
+*/
 
- 
+/*--------------------------------------------------------------
+1 - Font Family
+----------------------------------------------------------------
+*/
+
+#FONT-FAMILY-MAIN,
+body,
+#canvas,
+.font-family-main {
+ 	font-family: sans-serif;
+  /* font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif; */
+}
+
+#HEADING-FONT,
+h1,h2,h3,h4,h5,h6,
+.network-title,
+.site-title,
+.site-description,
+.site-info,
+.entry-title,
+.page-title,
+.widget-title,
+.heading-font {
+	font-family: serif;
+  /* font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif; */
+}
+
+/*--------------------------------------------------------------
+2 - Font Weights & Styles
+----------------------------------------------------------------
+*/
+
+#HEADING-BOLD,
+.heading-bold {
+	font-weight: bold;
+}
+#HEADING-ITALIC,
+.heading-italic {
+	font-style: italic;
+}
+#TEXT-TRANSFORM-UPPERCASE,
+.text-transform-uppercase {
+	text-transform: uppercase;
+}
+#TEXT-TRANSFORM-CAPITALIZE,
+.text-transform-capitalize {
+	text-transform: capitalize;
+}
+#TEXT-DECORATION-NONE,
+.text-decoration-none {
+	text-decoration: none;
+}
+#TEXT-DECORATION-UNDERLINE,
+.text-decoration-underline {
+	text-decoration: underline;
+}
+
+/*--------------------------------------------------------------
+3 - Special Elements
+----------------------------------------------------------------
+*/
+
+.widget-area,
+.os-post-date {
+	font-family: inherit;
+}
+
+/*--------------------------------------------------------------
+4 - Font Size
+----------------------------------------------------------------
+*/
+
+#FONT-SIZE-0,
+.font-size-0 {
+  font-size: 0.5rem; }
+#FONT-SIZE-1,
+.site-info p,
+.font-size-1 {
+  font-size: 0.75rem; }
+#FONT-SIZE-2,
+h6,
+.font-size-2 {
+  font-size: 1rem; }
+#FONT-SIZE-3,
+h5,
+.site-description,
+.font-size-3 {
+  font-size: 1.0625rem; }
+#FONT-SIZE-4,
+h4,
+.network-title,
+.site-title,
+.os-post-date,
+.font-size-4 {
+  font-size: 1.125rem; }
+#FONT-SIZE-5,
+h3,
+.widget-title,
+.font-size-5 {
+  font-size: 1.1875rem; }
+#FONT-SIZE-6,
+h2,
+.entry-title,
+.font-size-5 {
+  font-size: 1.25rem; }
+#FONT-SIZE-7,
+h1,
+.page-title,
+.font-size-7 {
+  font-size: 1.5rem; }
+
+@media print, screen and (min-width: 40em) {
+  #FONT-SIZE-0,
+  .font-size-0 {
+    font-size: 0.5rem; }
+  #FONT-SIZE-1,
+  .site-info p,
+  .font-size-1 {
+    font-size: 0.75rem; }
+  #FONT-SIZE-2,
+  h6,
+  .font-size-2 {
+    font-size: 1rem; }
+  #FONT-SIZE-3,
+  h5,
+  .font-size-3 {
+    font-size: 1.25rem; }
+  #FONT-SIZE-4,
+  h4,
+  .site-description,
+  .os-post-date,
+  .font-size-4 {
+    font-size: 1.5625rem; }
+  #FONT-SIZE-5,
+  h3,
+  .widget-title,
+  .network-title,
+  .site-title,
+  .font-size-5 {
+    font-size: 1.9375rem; }
+  #FONT-SIZE-6,
+  h2,
+  .entry-title,
+  .font-size-5 {
+    font-size: 2.5rem; }
+  #FONT-SIZE-7,
+  h1,
+  .page-title,
+  .font-size-7 {
+    font-size: 3rem; }
+}
+
+/*--------------------------------------------------------------
+5 - Text Colors
+----------------------------------------------------------------
+*/
+
+#TEXT-COLOR-BASE,
+body,
+/* button,
+input,
+select,
+textarea,
+.postscript-text, */
+.text-color-base {
+	color: #404040;
+}
+
+#TEXT-COLOR-VARIATION,
+h1 small,
+h2 small,
+h3 small,
+h4 small,
+h5 small,
+h6 small,
+.text-color-variation {
+    color: #cacaca;
+}
+
+#TEXT-COLOR-EMPHASIS,
+blockquote,
+blockquote p,
+cite,
+.subheader,
+.text-color-emphasis {
+  color: #8a8a8a;
+}
+
+#TEXT-COLOR-HIGHLIGHT,
+abbr,
+code,
+kbd,
+.text-color-highlight {
+  color: #0a0a0a;
+}
+
+#TEXT-COLOR-LINK,
+a,
+/* .main-navigation-menu-list a,
+.postscript-navigation-menu-list a,
+.postscript-text a, */
+.text-color-link {
+	color: #0000FF;
+}
+
+#TEXT-COLOR-VISITED,
+a:visited,
+/* .main-navigation-menu-list a:visited,
+.postscript-navigation-menu-list a:visited,
+.postscript-text a:visited, */
+.text-color-visited {
+	color: #800080;
+}
+
+#TEXT-COLOR-HOVER,
+a:hover,
+a:focus,
+a:active,
+/* .main-navigation-menu-list a:hover,
+.main-navigation-menu-list a:focus,
+.main-navigation-menu-list a:active,
+.postscript-navigation-menu-list a:hover,
+.postscript-navigation-menu-list a:focus,
+.postscript-navigation-menu-list a:active,
+.postscript-text a:hover,
+.postscript-text a:focus,
+.postscript-text a:active, */
+.text-color-hover {
+	color: #FF0000;
+}
+
+#TEXT-COLOR-BASE-ALT,
+.site-info,
+.text-color-base-alt {
+	color: #FBFBFB;
+}
+
+#TEXT-COLOR-LINK-ALT,
+/* .main-navigation-menu-list li.current-menu-item a,
+.postscript-navigation-menu-list li.current-menu-item a, */
+.site-info a,
+.text-color-link-alt {
+	color: #FFFF00;
+}
+
+#TEXT-COLOR-VISITED-ALT,
+/* .main-navigation-menu-list li.current-menu-item a:visited,
+.postscript-navigation-menu-list li.current-menu-item a:visited, */
+.site-info a:visited,
+.text-color-visited-alt {
+	color: #800080;
+}
+
+#TEXT-COLOR-HOVER-ALT,
+.site-info a:hover,
+.site-info a:focus,
+.site-info a:active,
+/* .main-navigation-menu-list li.current-menu-item a:hover,
+.main-navigation-menu-list li.current-menu-item a:focus,
+.main-navigation-menu-list li.current-menu-item a:active,
+.postscript-navigation-menu-list li.current-menu-item a:hover,
+.postscript-navigation-menu-list li.current-menu-item a:focus,
+.postscript-navigation-menu-list li.current-menu-item a:active, */
+.text-color-hover-alt {
+	color: #FF0000;
+}
+
+/*--------------------------------------------------------------
+6 - Background Colors
+----------------------------------------------------------------
+*/
+
+#BACKGROUND-BLACK,
+.background-colophon,
+.background-black {
+	background-color: #1A1A1A;
+}
+
+#BACKGROUND-WHITE,
+.background-canvas,
+.background-white  {
+	background-color: #FBFBFB;
+}
+
+#BACKGROUND-GREY,
+.background-page,
+/* pre,
+input,
+textarea,
+select, */
+.background-grey {
+	background: #f7f7f7;
+}
+
+#BACKGROUND-HIGHLIGHT-DARK,
+.background-highlight-dark {
+  	background-color: #666666;
+}
+
+#BACKGROUND-HIGHLIGHT-LIGHT,
+/* ul.main-navigation-menu-list li.menu-item:hover a,
+ul.postscript-navigation-menu-list li.menu-item:hover a, */
+.background-highlight-light  {
+	background: #CCCCCC;
+}
+
+#BACKGROUND-HIGHLIGHT-ALT,
+mark,
+ins,
+#background-highlight-alt {
+  	background-color: #FFFF00;
+}
+
+/*--------------------------------------------------------------
+7 - Lines & Borders
+----------------------------------------------------------------
+*/
+
+#BASE-BORDER-COLOR,
+fieldset,
+hr,
+blockquote,
+code,
+abbr,
+/* #canvas,
+form,
+fieldset,
+input,
+textarea,
+select,
+div.alert, div.msg,*/
+.base-border-color {
+	border-color: #cacaca;
+}
+
+#ALT-BORDER-COLOR,
+/* input:focus,
+textarea:focus,
+select:focus */
+.alt-border-color {
+	border-color: #aaa;
+}
