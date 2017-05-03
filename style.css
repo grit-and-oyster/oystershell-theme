@@ -11,5 +11,6 @@ Text Domain: oystershell
 */
 
 @import url("css/foundation.css");
+@import url("css/oystershell.css");
 
 /* --- Custom theme CSS goes here --- */
