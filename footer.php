@@ -26,7 +26,7 @@
 	</div><!-- #wrap -->
 </div><!-- #page .hfeed .site -->
 
-<section id="colophon" class="row site-footer background-colophon" role="contentinfo">
+<section id="colophon" class="site-footer background-colophon" role="contentinfo">
 	<h1 class="assistive-text"><?php _e( 'Colophon', 'oystershell' ); ?></h1>
 	<div class="site-info">
 		<?php oystershell_colophon(); ?>

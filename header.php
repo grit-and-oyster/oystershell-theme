@@ -34,11 +34,11 @@
 </head>
 
 <body <?php body_class(); ?>>
-<div id="page" class="row hfeed site background-page">
+<div id="page" class="hfeed site background-page">
 	<a class="skip-link assistive-text" href="#content"><?php _e( 'Skip to content', 'oystershell' ); ?></a>
 	<?php oystershell_page_top(); ?>
 		<div id="wrap">
-			<div id="canvas" class="background-canvas clearfix">
+			<div id="canvas" class="row background-canvas clearfix">
 				<div id="col-1" class="large-12 columns">
 					<header id="masthead" class="site-header" role="banner">
 						<?php oystershell_masthead() ?>
