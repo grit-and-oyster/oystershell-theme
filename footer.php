@@ -8,7 +8,7 @@
  * @since Oystershell 1.0
  */
 ?>
-			<div id="col-5">
+			<div id="col-5" class="large-12 columns">
 				<div id="postscript" class="postscript clearfix" role="complementary">
 					<nav id="postscript-navigation" class="site-navigation postscript-navigation clearfix" role="navigation">
 						<h1 class="assistive-text"><?php _e( 'Postscript navigation', 'oystershell' ); ?></h1>
@@ -26,7 +26,7 @@
 	</div><!-- #wrap -->
 </div><!-- #page .hfeed .site -->
 
-<section id="colophon" class="site-footer background-colophon" role="contentinfo">
+<section id="colophon" class="row site-footer background-colophon" role="contentinfo">
 	<h1 class="assistive-text"><?php _e( 'Colophon', 'oystershell' ); ?></h1>
 	<div class="site-info">
 		<?php oystershell_colophon(); ?>

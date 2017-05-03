@@ -6,7 +6,7 @@
  * @since Oystershell 1.0
  */
 ?>
-<div id="col-3">
+<div id="col-3" class="large-8 medium-8 columns">
 	<div id="primary" class="content-area">
 		<section id="content" class="site-content" role="main">
 			<h1 class="assistive-text"><?php _e( 'Post content', 'oystershell' ); ?></h1>

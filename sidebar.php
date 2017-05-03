@@ -7,7 +7,7 @@
  */
 ?>
 
-<div id="col-4">
+<div id="col-4" class="large-4 medium-4 columns">
 	<section id="secondary" class="widget-area" role="complementary">
 		<?php oystershell_before_sidebar(); ?>
 		<h1 class="assistive-text"><?php _e( 'Sidebar', 'oystershell' ); ?></h1>

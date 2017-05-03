@@ -6,7 +6,7 @@
  * @since Oystershell 1.0
  */
 ?>
-<div id="col-3">
+<div id="col-3" class="large-8 medium-8 columns">
 	<div id="primary" class="content-area">
 		<section id="content" class="site-content" role="main">
 			<h1 class="assistive-text"><?php _e( 'Attachment', 'oystershell' ); ?></h1>
@@ -18,7 +18,7 @@
 					<article class="post-entry">
 						<?php
 							if ( wp_attachment_is_image() ) {
-								get_template_part( 'formats/format-attachment', 'image' );								
+								get_template_part( 'formats/format-attachment', 'image' );
 							} else {
 								get_template_part( 'formats/format', 'attachment' );
 							}
