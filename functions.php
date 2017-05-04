@@ -32,10 +32,10 @@ require_once(get_template_directory().'/functions/comments.php');
 // Replace 'older/newer' post links with numbered navigation
 require_once(get_template_directory().'/functions/page-navi.php');
 
-require( get_template_directory() . '/inc/helper-functions.php' );
-require( get_template_directory() . '/inc/template-functions.php' );
-require( get_template_directory() . '/inc/format-functions.php' );
-require( get_template_directory() . '/inc/compat-functions.php' );
+require( get_template_directory() . '/functions/helper-functions.php' );
+require( get_template_directory() . '/functions/template-functions.php' );
+require( get_template_directory() . '/functions/format-functions.php' );
+require( get_template_directory() . '/functions/compat-functions.php' );
 
 //------------------------------------------------------------------------------------
 /**
