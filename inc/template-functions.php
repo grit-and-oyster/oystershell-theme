@@ -38,8 +38,9 @@ function oystershell_display_navmenu_primary() {
 	wp_nav_menu( array(
 		'theme_location'  => 'primary',
 		'container_class' => 'navigation-menu main-navigation-menu',
-		'menu_class'      => 'navigation-menu-list main-navigation-menu-list',
-		'depth' => 1,
+		'menu_class'      => 'dropdown menu navigation-menu-list main-navigation-menu-list',
+		'items_wrap' => '<ul id="%1$s" class="%2$s" data-dropdown-menu>%3$s</ul>',
+		'depth' => 3,
 		'fallback_cb'     => false
 	) );
 }
@@ -425,7 +426,7 @@ function oystershell_display_navmenu_postscript() {
 	wp_nav_menu( array(
 		'theme_location' => 'postscript',
 		'container_class' => 'navigation-menu postscript-navigation-menu',
-		'menu_class' => 'navigation-menu-list postscript-navigation-menu-list',
+		'menu_class' => 'menu navigation-menu-list postscript-navigation-menu-list',
 		'depth' => 1,
 		'fallback_cb' => false,
 
