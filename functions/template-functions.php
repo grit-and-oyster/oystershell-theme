@@ -48,46 +48,6 @@ endif; // oystershell_display_navmenu_primary
 add_action( 'oystershell_navmenu_primary', 'oystershell_display_navmenu_primary' );
 
 //------------------------------------------------------------------------------------
-if ( ! function_exists( 'oystershell_display_nav' ) ):
-/**
- * Display navigation to next/previous pages when applicable
- *
- * @since Oystershell 1.1
- */
-function oystershell_display_nav() {
-	global $wp_query;
-
-	if ( is_page() ) {
-		return;
-	} elseif ( is_single() ) {
-		oystershell_content_nav_links_post();
- 	} elseif ( $wp_query->max_num_pages > 1 && ( is_home() || is_archive() || is_search() ) ) { // navigation links for home, archive, and search pages
-		oystershell_content_nav_links_paging();
-	} else {
-		return;
-	}
-}
-endif; // oystershell_display_nav
-//add_action( 'oystershell_nav_default', 'oystershell_display_nav' );
-
-//------------------------------------------------------------------------------------
-if ( ! function_exists( 'oystershell_display_nav_attachment' ) ):
-/**
- * Display navigation to next/previous attachments when applicable
- *
- * @since Oystershell 1.1
- */
-function oystershell_display_nav_attachment() { ?>
-
-	<nav id="image-navigation">
-		<span class="previous-image"><?php previous_image_link( false, __( '&larr; Previous', 'oystershell' ) ); ?></span>
-		<span class="next-image"><?php next_image_link( false, __( 'Next &rarr;', 'oystershell' ) ); ?></span>
-	</nav><!-- #image-navigation -->
-<?php }
-endif; // oystershell_display_nav_attachment
-//add_action( 'oystershell_nav_attachment', 'oystershell_display_nav_attachment' );
-
-//------------------------------------------------------------------------------------
 if ( ! function_exists( 'oystershell_display_page_title' ) ) :
 /**
  * Prints HTML with the page title.

@@ -1,56 +1,36 @@
 <?php
-// Numeric Page Navi (built into the theme by default)
-function joints_page_navi($before = '', $after = '') {
-	global $wpdb, $wp_query;
-	$request = $wp_query->request;
-	$posts_per_page = intval(get_query_var('posts_per_page'));
-	$paged = intval(get_query_var('paged'));
-	$numposts = $wp_query->found_posts;
-	$max_page = $wp_query->max_num_pages;
-	if ( $numposts <= $posts_per_page ) { return; }
-	if(empty($paged) || $paged == 0) {
-		$paged = 1;
+//------------------------------------------------------------------------------------
+// Control the functions called to handle content nav
+
+add_action( 'oystershell_nav_above', 'oystershell_display_nav' );
+
+add_action( 'oystershell_nav_below', 'oystershell_display_nav' );
+
+add_action( 'oystershell_nav_attachment', 'oystershell_display_nav' );
+
+add_action( 'oystershell_nav_default', 'oystershell_display_nav' );
+
+//------------------------------------------------------------------------------------
+if ( ! function_exists( 'oystershell_display_nav' ) ):
+/**
+ * Display navigation to next/previous pages when applicable
+ *
+ * @since Oystershell 1.1
+ */
+function oystershell_display_nav() {
+	global $wp_query;
+
+	if ( is_page() ) {
+		return;
+	} elseif ( is_attachment() ) {
+		oystershell_content_nav_links_attachment();
+	}	elseif ( is_single() ) {
+		oystershell_content_nav_links_post();
+ 	} elseif ( $wp_query->max_num_pages > 1 && ( is_home() || is_archive() || is_search() ) ) { // navigation links for home, archive, and search pages
+		oystershell_content_nav_links_paging();
+		// oystershell_content_nav_links_numeric();
+	} else {
+		return;
 	}
-	$pages_to_show = 7;
-	$pages_to_show_minus_1 = $pages_to_show-1;
-	$half_page_start = floor($pages_to_show_minus_1/2);
-	$half_page_end = ceil($pages_to_show_minus_1/2);
-	$start_page = $paged - $half_page_start;
-	if($start_page <= 0) {
-		$start_page = 1;
-	}
-	$end_page = $paged + $half_page_end;
-	if(($end_page - $start_page) != $pages_to_show_minus_1) {
-		$end_page = $start_page + $pages_to_show_minus_1;
-	}
-	if($end_page > $max_page) {
-		$start_page = $max_page - $pages_to_show_minus_1;
-		$end_page = $max_page;
-	}
-	if($start_page <= 0) {
-		$start_page = 1;
-	}
-	echo $before.'<nav class="page-navigation"><ul class="pagination">'."";
-	if ($start_page >= 2 && $pages_to_show < $max_page) {
-		$first_page_text = __( 'First', 'jointswp' );
-		echo '<li><a href="'.get_pagenum_link().'" title="'.$first_page_text.'">'.$first_page_text.'</a></li>';
-	}
-	echo '<li>';
-	previous_posts_link( __('Previous', 'jointswp') );
-	echo '</li>';
-	for($i = $start_page; $i  <= $end_page; $i++) {
-		if($i == $paged) {
-			echo '<li class="current"> '.$i.' </li>';
-		} else {
-			echo '<li><a href="'.get_pagenum_link($i).'">'.$i.'</a></li>';
-		}
-	}
-	echo '<li>';
-	next_posts_link( __('Next', 'jointswp'), 0 );
-	echo '</li>';
-	if ($end_page < $max_page) {
-		$last_page_text = __( 'Last', 'jointswp' );
-		echo '<li><a href="'.get_pagenum_link($max_page).'" title="'.$last_page_text.'">'.$last_page_text.'</a></li>';
-	}
-	echo '</ul></nav>'.$after."";
-} /* End page navi */
+}
+endif; // oystershell_display_nav
