@@ -32,8 +32,8 @@
 	</div><!-- .entry-content -->
 <?php endif; ?>
 
-<footer class="entry-footer">
-	<div class="entry-meta">
+<footer class="row entry-footer">
+	<div class="small-12 columns entry-meta">
 		<?php oystershell_footer_meta(); ?>
 	</div><!-- .entry-meta -->
 </footer><!-- .entry-footer -->
