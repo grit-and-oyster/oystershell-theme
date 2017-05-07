@@ -201,6 +201,28 @@ function oystershell_comments() {
 endif; // oystershell_comments
 
 //------------------------------------------------------------------------------------
+if ( ! function_exists( 'oystershell_comments_nav' ) ):
+/**
+ * Function to handle the content navigation
+ */
+function oystershell_comments_nav( $nav_id ) {
+
+	if ( 'nav-above' == $nav_id ) {
+
+		do_action('oystershell_comments_nav_above');
+
+	} elseif ( 'nav-below' == $nav_id ) {
+
+		do_action('oystershell_comments_nav_below');
+
+	} else {
+
+		do_action('oystershell_comments_nav_default');
+	}
+}
+endif; // oystershell_comments_nav
+
+//------------------------------------------------------------------------------------
 if ( ! function_exists( 'oystershell_no_results' ) ):
 /**
  * Function to set up action hook for adding 'no results' message

@@ -259,35 +259,6 @@ endif; // oystershell_display_header_meta
 add_action( 'oystershell_footer_meta', 'oystershell_display_footer_meta' );
 
 //------------------------------------------------------------------------------------
-if ( ! function_exists( 'oystershell_display_comments' ) ):
-/**
- * Display comments and comment form
- *
- * @since Oystershell 1.0
- */
-function oystershell_display_comments() {
-	/*
-	 * If the current post is protected by a password and
-	 * the visitor has not yet entered the password we will
-	 * return early without loading the comments.
-	 */
-	if ( post_password_required() )
-		return;
-	/*
-	 * Don't display comments on pages and attachments
-	 */
-	if ( is_page() )
-		return;
-	if ( is_attachment() )
-		return;
-	// If comments are open or we have at least one comment, load up the comment template
-	if ( comments_open() || '0' != get_comments_number() )
-		comments_template( '', true );
-}
-endif; // oystershell_display_comments
-add_action( 'oystershell_comments', 'oystershell_display_comments' );
-
-//------------------------------------------------------------------------------------
 if ( ! function_exists( 'oystershell_display_no_results' ) ) :
 /**
  * Displays a message that posts cannot be found.

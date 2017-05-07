@@ -125,6 +125,19 @@ function oystershell_content_nav_links_numeric($before = '', $after = '') {
 endif; // oystershell_content_nav_links_numeric
 
 //------------------------------------------------------------------------------------
+if ( ! function_exists( 'oystershell_content_nav_links_comments' ) ):
+	function oystershell_content_nav_links_comments() { ?>
+		<nav role="navigation" id="comment-nav" class="site-navigation comment-navigation">
+			<h2 class="assistive-text"><?php _e( 'Comment navigation', 'oystershell' ); ?></h2>
+			<div class="nav-links">
+				<div class="nav-previous"><?php previous_comments_link( __( '<span class="meta-nav">&larr;</span> Older comments', 'oystershell' ) ); ?></div>
+				<div class="nav-next"><?php next_comments_link( __( 'Newer comments <span class="meta-nav">&rarr;</span>', 'oystershell' ) ); ?></div>
+			</div><!-- .nav-links -->
+		</nav><!-- #comment-nav-above -->
+	<?php }
+endif;
+
+//------------------------------------------------------------------------------------
 if ( ! function_exists( 'oystershell_display_author_profile_links' ) ) :
 /**
  *  Prints HTML with user links for author profiles.
@@ -448,174 +461,6 @@ function oystershell_tags_n_cats( $before = '', $after = '' ) {
 	);
 }
 endif;
-
-//------------------------------------------------------------------------------------
-/**
- * Comment Format Functions
- * Functions used by comments.php
- */
-//------------------------------------------------------------------------------------
-if ( ! function_exists( 'oystershell_comments_title' ) ) :
-/**
- * Prints HTML with the title for the comments list.
- *
- * @since Oystershell 1.0
- */
-function oystershell_comments_title() {
-
-	printf(
-		_n(
-			'One Response', '%1$s Responses',
-			get_comments_number()
-		),
-		number_format_i18n( get_comments_number() )
-	);
-}
-endif;
-
-//------------------------------------------------------------------------------------
-if ( ! function_exists( 'oystershell_comments_nav' ) ):
-/**
- * Display navigation to next/previous comments when applicable
- *
- * @since Oystershell 1.0
- */
-function oystershell_comments_nav() {
-
-	if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
-		<nav role="navigation" class="site-navigation comment-navigation">
-			<h1 class="assistive-text"><?php _e( 'Comment navigation', 'oystershell' ); ?></h1>
-			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'oystershell' ) ); ?></div>
-			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'oystershell' ) ); ?></div>
-		</nav><!-- .site-navigation .comment-navigation -->
-	<?php endif; // check for comment navigation
-}
-endif; // oystershell_comments_nav
-
-//------------------------------------------------------------------------------------
-if ( ! function_exists( 'oystershell_display_comment' ) ) :
-/**
- * Template for comments and pingbacks.
- *
- * Used as a callback by wp_list_comments() for displaying the comments.
- *
- * @since Oystershell 1.0
- */
-function oystershell_display_comment( $comment, $args, $depth ) {
-	$GLOBALS['comment'] = $comment;
-	switch ( $comment->comment_type ) :
-		case 'pingback' :
-		case 'trackback' :
-			oystershell_format_pingback( $comment, $args, $depth );
-			break;
-		default :
-			oystershell_format_comment( $comment, $args, $depth );
-			break;
-	endswitch;
-}
-endif; // ends check for oystershell_comment()
-
-//------------------------------------------------------------------------------------
-if ( ! function_exists( 'oystershell_format_comment' ) ):
-/**
- * Display navigation to next/previous comments when applicable
- *
- * @since Oystershell 1.0
- */
-function oystershell_format_comment( $comment, $args, $depth ) {
-	$GLOBALS['comment'] = $comment;
-	extract( $args, EXTR_SKIP );
-	?>
-	<li <?php comment_class( empty( $args['has_children'] ) ? '' : 'parent' ) ?> id="comment-<?php comment_ID(); ?>">
-		<div class="comment-body" id="div-comment-<?php comment_ID(); ?>">
-
-			<div class="comment-author vcard">
-
-				<span class="avatar">
-					<?php echo get_avatar( $comment, $args['avatar_size'] ); ?>
-				</span><!-- .avatar -->
-
-				<div class="comment-meta">
-					<span class="comment-meta-author">
-						<?php printf(  '<cite class="fn">%s</cite>', get_comment_author_link() ); ?>
-					</span>
-					<span class="comment-meta-date">
-						<?php printf( __('%1$s at %2$s'), get_comment_date(),  get_comment_time()) ?>
-					</span>
-					<span class="comment-meta-link">
-						<a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ) ?>" title="Link to this comment">&#35;</a>
-					</span>
-					<?php edit_comment_link( __( 'Edit' ), '<span class="comment-edit-link">', '</span>' ); ?>
-				</div><!-- .comment-meta -->
-
-			</div><!-- .comment-author -->
-
-			<div class="comment-text">
-				<?php if ( '0' === $comment->comment_approved ) { ?>
-					<div class="comment-moderation-notice">
-						<em class="comment-awaiting-moderation">
-							<?php _e( 'Your comment is awaiting moderation.' ); ?>
-						</em><!-- .comment-awaiting-moderation -->
-					</div><!-- .comment-moderation-notice -->
-				<?php } // end if ?>
-				<?php comment_text(); ?>
-			</div><!-- .comment-text -->
-
-			<div class="comment-reply">
-				<?php
-					comment_reply_link(
-						array_merge(
-							$args,
-							array(
-								'add_below'    => 'comment',
-								'depth'        => $depth,
-								'max_depth'    => $args['max_depth']
-							)
-						)
-					);
-				?>
-			</div><!-- .reply -->
-		</div><!-- .comment-body -->
-	</li><!-- #li-comment-<?php comment_ID(); ?>-->
-	<?php
-}
-endif; // oystershell_format_comment
-
-//------------------------------------------------------------------------------------
-if ( ! function_exists( 'oystershell_format_pingback' ) ):
-/**
- * Display navigation to next/previous comments when applicable
- *
- * @since Oystershell 1.0
- */
-function oystershell_format_pingback( $comment, $args, $depth ) {
-	$GLOBALS['comment'] = $comment;
-	extract( $args, EXTR_SKIP );
-	?>
-	<li <?php comment_class( empty( $args['has_children'] ) ? '' : 'parent' ) ?> id="comment-<?php comment_ID(); ?>">
-		<div class="ping-body" id="div-ping-<?php comment_ID(); ?>">
- 			<div class="ping-author vcard">
-				<div class="ping-meta">
-					<span class="ping-meta">
-						<span class="ping-meta-author">
-							<?php printf(  '<cite class="fn">%s</cite>', get_comment_author_link() ); ?>
-						</span>
-						<span class="ping-meta-date">
-							<?php printf( __('%1$s at %2$s'), get_comment_date(),  get_comment_time() ); ?>
-						</span>
-					</span><!-- .ping-meta -->
-				</div><!-- .ping-meta-wrapper -->
-			</div><!-- .ping-author -->
-
-			<div class="ping-text">
-				<?php comment_text(); ?>
-			</div><!-- .ping-text -->
-
-		</div><!-- .ping-body -->
-	</li><!-- #li-ping-<?php comment_ID(); ?>-->
-	<?php
-}
-endif; // oystershell_format_pingback
 
 //------------------------------------------------------------------------------------
 /**
