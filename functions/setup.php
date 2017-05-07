@@ -13,6 +13,8 @@
 add_action( 'after_setup_theme', 'oystershell_setup' );
 add_action( 'after_setup_theme', 'oystershell_start', 16);
 add_filter( 'post_class', 'remove_sticky_class');
+add_action( 'init', 'oystershell_add_excerpts_to_pages' );
+add_action( 'wp_head', 'oystershell_add_icons');
 
 //------------------------------------------------------------------------------------
 if ( ! function_exists( 'oystershell_setup' ) ):
@@ -83,6 +85,13 @@ function oystershell_theme_support() {
 		'gallery',
 		'caption',
 	) );
+
+	/**
+	 * Add support for Post Formats
+	 *
+	 * 'status', 'aside', 'quote', 'link', 'image', 'gallery', 'video', 'audio', 'chat'
+	 */
+	add_theme_support( 'post-formats', array( 'status', 'quote', 'link' ) );
 
 }
 
@@ -160,4 +169,21 @@ function oystershell_get_the_author_posts_link() {
 		get_the_author()
 	);
 	return $link;
+}
+
+//------------------------------------------------------------------------------------
+// Add support for excerpts to pages
+function oystershell_add_excerpts_to_pages() {
+     add_post_type_support( 'page', 'excerpt' );
+}
+
+//------------------------------------------------------------------------------------
+function oystershell_add_icons() {
+?>
+<link rel="shortcut icon" href="<?php bloginfo('stylesheet_directory'); ?>/favicon.ico" >
+<link rel="apple-touch-icon" href="<?php bloginfo('stylesheet_directory'); ?>/img/apple-touch-icon.png" >
+<link rel="apple-touch-icon" sizes="72x72" href="<?php bloginfo('stylesheet_directory'); ?>/img/apple-touch-icon-72x72.png" >
+<link rel="apple-touch-icon" sizes="114x114" href="<?php bloginfo('stylesheet_directory'); ?>/img/apple-touch-icon-114x114.png" >
+<link rel="apple-touch-icon" sizes="144x144" href="<?php bloginfo('stylesheet_directory'); ?>/img/apple-touch-icon-144x144.png" >
+<?php
 }
