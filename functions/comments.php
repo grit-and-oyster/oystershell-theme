@@ -34,10 +34,10 @@ function oystershell_display_comment_item($comment, $args, $depth) {
    $GLOBALS['comment'] = $comment; ?>
 	<li <?php comment_class('panel'); ?>>
 		<div class="row media-object">
-			<div class="small-2 columns media-object-section">
-			    <?php echo get_avatar( $comment, 75 ); ?>
+			<div class="hide-for-small-only medium-2 columns media-object-section">
+		    <?php echo get_avatar( $comment, 75 ); ?>
 			  </div>
-			<div class="small-10 columns media-object-section">
+ 			<div class="small-12 medium-10 columns media-object-section">
 				<article id="comment-<?php comment_ID(); ?>">
 					<header class="comment-author">
 						<?php
