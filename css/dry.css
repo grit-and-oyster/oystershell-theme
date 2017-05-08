@@ -76,83 +76,57 @@ h1,h2,h3,h4,h5,h6,
 */
 
 #FONT-SIZE-0,
+
 .font-size-0 {
   font-size: 0.5rem; }
 #FONT-SIZE-1,
-.site-info p,
+
 .font-size-1 {
   font-size: 0.75rem; }
 #FONT-SIZE-2,
-h6,
+
 .font-size-2 {
   font-size: 1rem; }
 #FONT-SIZE-3,
-h5,
-.site-description,
+
 .font-size-3 {
   font-size: 1.0625rem; }
 #FONT-SIZE-4,
-h4,
-.network-title,
-.site-title,
-.os-post-date,
+
 .font-size-4 {
   font-size: 1.125rem; }
 #FONT-SIZE-5,
-h3,
-.widget-title,
+
 .font-size-5 {
   font-size: 1.1875rem; }
 #FONT-SIZE-6,
-h2,
-.entry-title,
-.font-size-5 {
+
+.font-size-6 {
   font-size: 1.25rem; }
 #FONT-SIZE-7,
-h1,
-.page-title,
+
 .font-size-7 {
   font-size: 1.5rem; }
+#FONT-SIZE-8,
+
+.font-size-8 {
+  font-size: 1.5625rem; }
+#FONT-SIZE-9,
+
+.font-size-9 {
+  font-size: 1.9375rem; }
+#FONT-SIZE-10,
+
+.font-size-10 {
+  font-size: 2.5rem; }
+#FONT-SIZE-11,
+
+.font-size-11 {
+  font-size: 3rem; }
+}
 
 @media print, screen and (min-width: 40em) {
-  #FONT-SIZE-0,
-  .font-size-0 {
-    font-size: 0.5rem; }
-  #FONT-SIZE-1,
-  .site-info p,
-  .font-size-1 {
-    font-size: 0.75rem; }
-  #FONT-SIZE-2,
-  h6,
-  .font-size-2 {
-    font-size: 1rem; }
-  #FONT-SIZE-3,
-  h5,
-  .font-size-3 {
-    font-size: 1.25rem; }
-  #FONT-SIZE-4,
-  h4,
-  .site-description,
-  .os-post-date,
-  .font-size-4 {
-    font-size: 1.5625rem; }
-  #FONT-SIZE-5,
-  h3,
-  .widget-title,
-  .network-title,
-  .site-title,
-  .font-size-5 {
-    font-size: 1.9375rem; }
-  #FONT-SIZE-6,
-  h2,
-  .entry-title,
-  .font-size-5 {
-    font-size: 2.5rem; }
-  #FONT-SIZE-7,
-  h1,
-  .page-title,
-  .font-size-7 {
-    font-size: 3rem; }
+
 }
 
 /*--------------------------------------------------------------
