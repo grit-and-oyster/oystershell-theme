@@ -38,9 +38,6 @@ function oystershell_start() {
     // clean up gallery output in wp
     add_filter('gallery_style', 'oystershell_gallery_style');
 
-    // adding sidebars to Wordpress
-    add_action( 'widgets_init', 'oystershell_register_sidebars' );
-
     // cleaning up excerpt
     add_filter('excerpt_more', 'oystershell_excerpt_more');
 

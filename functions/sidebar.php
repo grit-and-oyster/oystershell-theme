@@ -1,4 +1,7 @@
 <?php
+
+add_action( 'widgets_init', 'oystershell_widgets_init' );
+
 //------------------------------------------------------------------------------------
 if ( ! function_exists( 'oystershell_widgets_init' ) ):
 /**
@@ -18,4 +21,3 @@ function oystershell_widgets_init() {
 	) );
 }
 endif; // oystershell_widgets_init
-add_action( 'widgets_init', 'oystershell_widgets_init' );
