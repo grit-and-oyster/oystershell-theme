@@ -7,77 +7,53 @@
 		'postscript' => __( 'Postscript Menu', 'oystershell' ),
 	) );
 
-// The Top Menu
-function oystershell_top_nav() {
-	 wp_nav_menu(array(
-        'container' => false,                           // Remove nav container
-        'menu_class' => 'vertical medium-horizontal menu',       // Adding custom nav class
-        'items_wrap' => '<ul id="%1$s" class="%2$s" data-responsive-menu="accordion medium-dropdown">%3$s</ul>',
-        'theme_location' => 'primary',        			// Where it's located in the theme
-        'depth' => 5,                                   // Limit the depth of the nav
-        'fallback_cb' => false,                         // Fallback function (see below)
-        'walker' => new Topbar_Menu_Walker()
-    ));
-}
+	/**
+	 * Associate menus with hooks
+	 */
+	add_action( 'oystershell_navmenu_primary', 'oystershell_display_navmenu_primary' );
+	add_action( 'oystershell_navmenu_postscript', 'oystershell_display_navmenu_postscript' );
 
-// Big thanks to Brett Mason (https://github.com/brettsmason) for the awesome walker
-class Topbar_Menu_Walker extends Walker_Nav_Menu {
-    function start_lvl(&$output, $depth = 0, $args = Array() ) {
-        $indent = str_repeat("\t", $depth);
-        $output .= "\n$indent<ul class=\"menu\">\n";
-    }
-}
+	//------------------------------------------------------------------------------------
+	if ( ! function_exists( 'oystershell_display_navmenu_primary' ) ):
+	/**
+	 * Insert the primary navigation menu
+	 *
+	 * @since Oystershell 1.1
+	 */
+	function oystershell_display_navmenu_primary() {
 
-// The Off Canvas Menu
-function oystershell_off_canvas_nav() {
-	 wp_nav_menu(array(
-        'container' => false,                           // Remove nav container
-        'menu_class' => 'vertical menu',       // Adding custom nav class
-        'items_wrap' => '<ul id="%1$s" class="%2$s" data-accordion-menu>%3$s</ul>',
-        'theme_location' => 'primary',        			// Where it's located in the theme
-        'depth' => 5,                                   // Limit the depth of the nav
-        'fallback_cb' => false,                         // Fallback function (see below)
-        'walker' => new Off_Canvas_Menu_Walker()
-    ));
-}
+		wp_nav_menu( array(
+			'theme_location'  => 'primary',
+			'container_class' => 'navigation-menu main-navigation-menu',
+			'menu_class'      => 'dropdown menu navigation-menu-list main-navigation-menu-list',
+			'items_wrap' => '<ul id="%1$s" class="%2$s" data-dropdown-menu>%3$s</ul>',
+			'depth' => 3,
+			'fallback_cb'     => false
+		) );
+	}
+	endif; // oystershell_display_navmenu_primary
 
-class Off_Canvas_Menu_Walker extends Walker_Nav_Menu {
-    function start_lvl(&$output, $depth = 0, $args = Array() ) {
-        $indent = str_repeat("\t", $depth);
-        $output .= "\n$indent<ul class=\"vertical menu\">\n";
-    }
-}
+	//------------------------------------------------------------------------------------
+	if ( ! function_exists( 'oystershell_display_navmenu_postscript' ) ):
+	/**
+	 * Insert the postscript navigation menu
+	 *
+	 * @since Oystershell 1.0
+	 */
+	function oystershell_display_navmenu_postscript() {
 
-// The Footer Menu
-function oystershell_footer_links() {
-    wp_nav_menu(array(
-    	'container' => 'false',                         // Remove nav container
-    	'menu' => __( 'Footer Links', 'jointswp' ),   	// Nav name
-    	'menu_class' => 'menu',      					// Adding custom nav class
-    	'theme_location' => 'postscript',             // Where it's located in the theme
-        'depth' => 0,                                   // Limit the depth of the nav
-    	'fallback_cb' => ''  							// Fallback function
-	));
-} /* End Footer Menu */
+		wp_nav_menu( array(
+			'theme_location' => 'postscript',
+			'container_class' => 'navigation-menu postscript-navigation-menu',
+			'menu_class' => 'menu navigation-menu-list postscript-navigation-menu-list',
+			'depth' => 1,
+			'fallback_cb' => false,
 
-// Header Fallback Menu
-function oystershell_main_nav_fallback() {
-	wp_page_menu( array(
-		'show_home' => true,
-    	'menu_class' => '',      						// Adding custom nav class
-		'include'     => '',
-		'exclude'     => '',
-		'echo'        => true,
-        'link_before' => '',                           // Before each link
-        'link_after' => ''                             // After each link
-	) );
-}
+		) );
+	}
+	endif; // oystershell_display_navmenu_postscript
 
-// Footer Fallback Menu
-function oystershell_footer_links_fallback() {
-	/* You can put a default here if you like */
-}
-
+//------------------------------------------------------------------------------------
 // Add Foundation active class to menu
 function required_active_nav_class( $classes, $item ) {
     if ( $item->current == 1 || $item->current_item_ancestor == true ) {
