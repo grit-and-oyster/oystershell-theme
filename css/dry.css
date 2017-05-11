@@ -1,5 +1,5 @@
 /**
-* Site specific DRY styles
+* Theme specific DRY styles
 * Version 1.0
 */
 
@@ -66,6 +66,7 @@ h1,h2,h3,h4,h5,h6,
 */
 
 .widget-area,
+.wp-sticky,
 .os-post-date {
 	font-family: inherit;
 }
@@ -318,4 +319,77 @@ textarea:focus,
 select:focus */
 .alt-border-color {
 	border-color: #aaa;
+}
+
+/*--------------------------------------------------------------
+8 - Margins
+----------------------------------------------------------------
+*/
+
+#PADDING-RIGHT,
+.widget,
+.post-navigation,
+.paging-navigation,
+.taxonomy-description,
+.comments-area,
+.padding-right {
+    padding-right: .9375rem;
+}
+#PADDING-LEFT,
+.widget,
+.post-navigation,
+.paging-navigation,
+.taxonomy-description,
+.comments-area,
+.padding-left {
+    padding-left: .9375rem;
+}
+#PADDING-H-h-h,
+.entry-header,
+.widget,
+.post-navigation,
+.paging-navigation,
+.padding-h-h-h {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+}
+#MARGIN-H-0-0,
+
+.margin-h-0-0 {
+  margin-bottom: 0;
+}
+#MARGIN-H-1-0,
+#postscript,
+#colophon,
+.entry-content,
+.entry-summary,
+.entry-footer,
+.comments-area,
+.margin-h-1-0 {
+  padding-top: 0.75rem;
+  padding-bottom: 0;
+}
+#MARGIN-H-0-1,
+.taxonomy-description,
+.margin-h-0-1 {
+  padding-top: 0;
+  padding-bottom: 0.75rem;
+}
+
+/*--------------------------------------------------------------
+9 - Content Navigation
+----------------------------------------------------------------
+*/
+
+.site-content .site-navigation {
+	overflow: hidden;
+}
+.site-content .nav-previous {
+	float: left;
+	width: 50%;
+}
+.site-content .nav-next {
+	float: right;
+	text-align: right;
+	width: 50%;
 }
