@@ -27,19 +27,19 @@ endif; // oystershell_setup
 function oystershell_start() {
 
     // launching operation cleanup
-    add_action('init', 'oystershell_head_cleanup');
+    add_action( 'init', 'oystershell_head_cleanup' );
 
     // remove pesky injected css for recent comments widget
     add_filter( 'wp_head', 'oystershell_remove_wp_widget_recent_comments_style', 1 );
 
     // clean up comment styles in the head
-    add_action('wp_head', 'oystershell_remove_recent_comments_style', 1);
+    add_action( 'wp_head', 'oystershell_remove_recent_comments_style', 1 );
 
     // clean up gallery output in wp
-    add_filter('gallery_style', 'oystershell_gallery_style');
+    add_filter( 'gallery_style', 'oystershell_gallery_style' );
 
     // cleaning up excerpt
-    add_filter('excerpt_more', 'oystershell_excerpt_more');
+    add_filter( 'excerpt_more', 'oystershell_excerpt_more' );
 
 } /* end oystershell_start */
 
@@ -68,8 +68,27 @@ function oystershell_theme_support() {
 	 */
 	add_theme_support( 'post-thumbnails' );
 
-  // Default thumbnail size
-	//set_post_thumbnail_size(125, 125, true);
+	/**
+	 * Set default Post Thumbnail size
+	 */
+	// set_post_thumbnail_size(125, 125, true);
+
+	/**
+	 * Create custom image sizes
+	 */
+  // add_image_size( 'clubsoda-profile', 190, 190, true );
+
+	/**
+	 * Enable support for Custom Backgrounds
+	 */
+	// add_theme_support( 'custom-background' );
+
+	/**
+	 * Add support for Post Formats
+	 *
+	 * 'status', 'aside', 'quote', 'link', 'image', 'gallery', 'video', 'audio', 'chat'
+	 */
+	add_theme_support( 'post-formats', array( 'status', 'quote', 'link' ) );
 
 	/*
 	 * Switch default core markup for search form, comment form, and comments
@@ -82,14 +101,6 @@ function oystershell_theme_support() {
 		'gallery',
 		'caption',
 	) );
-
-	/**
-	 * Add support for Post Formats
-	 *
-	 * 'status', 'aside', 'quote', 'link', 'image', 'gallery', 'video', 'audio', 'chat'
-	 */
-	add_theme_support( 'post-formats', array( 'status', 'quote', 'link' ) );
-
 }
 
 //------------------------------------------------------------------------------------
@@ -139,7 +150,7 @@ function oystershell_gallery_style($css) {
 function oystershell_excerpt_more($more) {
 	global $post;
 	// edit here if you like
-return '<a class="excerpt-read-more" href="'. get_permalink($post->ID) . '" title="'. __('Read', 'jointswp') . get_the_title($post->ID).'">'. __('... Read more &raquo;', 'jointswp') .'</a>';
+return '<a class="excerpt-read-more" href="'. get_permalink($post->ID) . '" title="'. __('Read', 'oystershell') . get_the_title($post->ID).'">'. __('... Read more &raquo;', 'oystershell') .'</a>';
 }
 
 //------------------------------------------------------------------------------------
@@ -162,7 +173,7 @@ function oystershell_get_the_author_posts_link() {
 	$link = sprintf(
 		'<a href="%1$s" title="%2$s" rel="author">%3$s</a>',
 		get_author_posts_url( $authordata->ID, $authordata->user_nicename ),
-		esc_attr( sprintf( __( 'Posts by %s', 'jointswp' ), get_the_author() ) ), // No further l10n needed, core will take care of this one
+		esc_attr( sprintf( __( 'Posts by %s', 'oystershell' ), get_the_author() ) ), // No further l10n needed, core will take care of this one
 		get_the_author()
 	);
 	return $link;
