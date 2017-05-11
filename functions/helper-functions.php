@@ -139,3 +139,10 @@ function remove_more_jump_link($link) {
 }
 endif;
 add_filter('the_content_more_link', 'remove_more_jump_link');
+
+//------------------------------------------------------------------------------------
+if ( ! function_exists( 'empty_content' ) ) :
+function empty_content($str) {
+    return trim(str_replace('&nbsp;','',strip_tags($str))) == '';
+}
+endif;
