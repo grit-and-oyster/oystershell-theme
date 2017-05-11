@@ -38,8 +38,14 @@ require( get_template_directory() . '/functions/helper-functions.php' );
 // Functions for displaying template components
 require( get_template_directory() . '/functions/template-functions.php' );
 
+// Functions for formatting page elements
 require( get_template_directory() . '/functions/format-functions.php' );
+
+// Additional functions for SEO and compatibility
 require( get_template_directory() . '/functions/compat-functions.php' );
+
+// Custom functions unique to this theme
+require( get_template_directory() . '/functions/theme-functions.php' );
 
 //------------------------------------------------------------------------------------
 /**
