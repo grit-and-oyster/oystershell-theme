@@ -5,5 +5,7 @@ Stylesheet: Main Stylesheet
 
 *************************************************/
 
+@import url(https://fonts.googleapis.com/css?family=EB+Garamond|Asap);
+
 @import url("oystershell.css");
 @import url("dry.css");

@@ -19,8 +19,8 @@ function oystershell_scripts() {
     // Foundation stylesheet
     wp_enqueue_style( 'foundation-css', get_template_directory_uri() . '/vendor/foundation/css/foundation.min.css', array(), '', 'all' );
 
-     // Add custom fonts, used in the main stylesheet.
-   	wp_enqueue_style( 'oystershell-fonts', oystershell_fonts_url(), array(), null );
+     // Add Font Awesome.
+    wp_enqueue_style( 'font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css' );
 
     // Register main stylesheet
     wp_enqueue_style( 'site-css', get_template_directory_uri() . '/css/style.css', array(), '', 'all' );
@@ -38,35 +38,3 @@ function oystershell_scripts() {
 }
 endif; // oystershell_scripts
 add_action('wp_enqueue_scripts', 'oystershell_scripts', 999);
-
-//------------------------------------------------------------------------------------
-if ( ! function_exists( 'oystershell_fonts_url' ) ) :
-/**
- * Register Google fonts for Oystershell.
- *
- * Create your own oystershell_fonts_url() function to override in a child theme.
- *
- * @since Oystershell 1.1
- *
- * @return string Google fonts URL for the theme.
- */
-function oystershell_fonts_url() {
-	$fonts_url = '';
-	$fonts     = array();
-	$subsets   = 'latin,latin-ext';
-
-	/* translators: If there are characters in your language that are not supported by Asap, translate this to 'off'. Do not translate into your own language. */
-	if ( 'off' !== _x( 'on', 'Asap font: on or off', 'oystershell' ) ) {
-		$fonts[] = 'Asap:400,700,400italic,700italic';
-	}
-
-	if ( $fonts ) {
-		$fonts_url = add_query_arg( array(
-			'family' => urlencode( implode( '|', $fonts ) ),
-			'subset' => urlencode( $subsets ),
-		), 'https://fonts.googleapis.com/css' );
-	}
-
-	return $fonts_url;
-}
-endif;
