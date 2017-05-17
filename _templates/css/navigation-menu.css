@@ -1,0 +1,73 @@
+
+.main-navigation-menu {
+
+}
+
+.main-navigation-menu-list {
+
+}
+
+.main-navigation-menu-list .menu-list {
+
+}
+
+.main-navigation-menu-list .menu-list a {
+
+}
+
+.main-navigation-menu-list .menu .active>a {
+
+  background-color: inherit;
+
+}
+
+/* Main Navigation: Dropdown Menu */
+
+.main-navigation-menu ul ul li { /* this targets all submenu items */
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: #fbfbfb;
+}
+
+.main-navigation-menu .submenu>li>a {
+    padding: 0.25rem 1rem;
+}
+
+.main-navigation-menu .is-dropdown-submenu {
+	border: 0;
+}
+
+.main-navigation-menu li.is-active {
+  background-color: #010101;
+}
+
+.main-navigation-menu .submenu {
+  background-color: #020202;
+}
+
+.main-navigation-menu .submenu a {
+  color: #86a2a5;
+}
+
+.main-navigation-menu .menu .active>a {
+    background: #86a2a5;
+    color: #fbfbfb;
+}
+
+.main-navigation-menu.dropdown.menu > li.is-dropdown-submenu-parent > a::after,
+.main-navigation-menu .dropdown.menu.medium-horizontal > li.is-dropdown-submenu-parent > a::after,
+.main-navigation-menu .dropdown.menu.large-horizontal > li.is-dropdown-submenu-parent > a::after {
+	border-color: #86a2a5 transparent transparent;
+}
+.main-navigation-menu .dropdown.menu.vertical > li.opens-left > a::after,
+.main-navigation-menu .dropdown.menu.medium-vertical > li.opens-left > a::after,
+.main-navigation-menu .dropdown.menu.large-vertical > li.opens-left > a::after,
+.main-navigation-menu .is-dropdown-submenu .is-dropdown-submenu-parent.opens-left > a::after {
+	border-color: transparent #86a2a5 transparent transparent;
+}
+.main-navigation-menu .dropdown.menu.vertical > li.opens-right > a::after,
+.main-navigation-menu .dropdown.menu.medium-vertical > li.opens-right > a::after,
+.main-navigation-menu .dropdown.menu.large-vertical > li.opens-right > a::after,
+.main-navigation-menu .is-dropdown-submenu .is-dropdown-submenu-parent.opens-right > a::after {
+	border-color: transparent transparent transparent #86a2a5;
+}
