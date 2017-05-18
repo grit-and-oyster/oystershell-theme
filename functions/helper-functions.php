@@ -143,6 +143,7 @@ add_filter('the_content_more_link', 'remove_more_jump_link');
 //------------------------------------------------------------------------------------
 if ( ! function_exists( 'empty_content' ) ) :
 function empty_content($str) {
-    return trim(str_replace('&nbsp;','',strip_tags($str))) == '';
+	$result = osc_empty_content($str);
+  return $result;
 }
 endif;
