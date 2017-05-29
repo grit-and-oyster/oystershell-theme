@@ -54,7 +54,7 @@
     color: #fbfbfb;
 }
 
-.main-navigation-menu.dropdown.menu > li.is-dropdown-submenu-parent > a::after,
+.main-navigation-menu .dropdown.menu > li.is-dropdown-submenu-parent > a::after,
 .main-navigation-menu .dropdown.menu.medium-horizontal > li.is-dropdown-submenu-parent > a::after,
 .main-navigation-menu .dropdown.menu.large-horizontal > li.is-dropdown-submenu-parent > a::after {
 	border-color: #86a2a5 transparent transparent;
