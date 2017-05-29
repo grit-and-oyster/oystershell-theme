@@ -20,7 +20,7 @@ function oystershell_scripts() {
     wp_enqueue_style( 'foundation-css', get_template_directory_uri() . '/vendor/foundation/css/foundation.min.css', array(), '', 'all' );
 
      // Add Font Awesome.
-    wp_enqueue_style( 'font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css' );
+    wp_enqueue_style( 'font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' );
 
     // Register main stylesheet
     wp_enqueue_style( 'site-css', get_template_directory_uri() . '/css/style.css', array(), '', 'all' );
