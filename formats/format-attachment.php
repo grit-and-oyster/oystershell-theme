@@ -6,7 +6,7 @@
  * @since Oystershell 1.0
  */
 ?>
-<header class="entry-header">
+<header class="row entry-header">
 	<div class="small-12 columns">
 		<h1 class="page-title"><?php the_title(); ?></h1>
 		<div class="entry-meta">

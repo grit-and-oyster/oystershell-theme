@@ -7,21 +7,25 @@
  */
 ?>
 
-<header class="entry-header">
-	<?php oystershell_featured_image(); ?>
-	<h1 class="entry-title assistive-text"><?php the_title(); ?></h1>
-	<div class="entry-meta">
-		<?php oystershell_header_meta(); ?>
-	</div><!-- .entry-meta -->
+<header class="row entry-header">
+	<div class="small-12 columns">
+		<?php oystershell_featured_image(); ?>
+		<h1 class="entry-title assistive-text"><?php the_title(); ?></h1>
+		<div class="entry-meta">
+			<?php oystershell_header_meta(); ?>
+		</div><!-- .entry-meta -->
+	</div>
 </header><!-- .entry-header -->
 
-<div class="entry-content">
+<div class="row entry-content">
+	<div class="small-12 columns">
 		<?php the_content( ); ?>
+	</div>
 </div><!-- .entry-content -->
 
-<footer class="entry-footer">
-	<div class="entry-meta">
-		<?php oystershell_meta_byline( 'Status of <span class="byline">', '</span>' ); ?> 
+<footer class="row entry-footer">
+	<div class="small-12 columns entry-meta">
+		<?php oystershell_meta_byline( 'Status of <span class="byline">', '</span>' ); ?>
 		<?php oystershell_meta_pubdate( '<span class="meta-pubdate">on ', '</span>'); ?>
 		<?php oystershell_comments_meta( '<span class="sep"> | </span><span class="meta-comments">', '</span>' ); ?>
 		<?php edit_post_link( __( 'Edit', 'oystershell' ), '<span class="sep"> | </span><span class="edit-link">', '</span>' ); ?>
