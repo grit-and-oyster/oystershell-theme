@@ -19,7 +19,7 @@
 
 <div class="row entry-content">
 	<div class="small-12 columns">
-		<p class="link-format-link"><a href="<?php echo get_post_meta($post->ID, '_format_link_url', true); ?>" target="_blank" title="Link to <?php the_title(); ?>"><?php the_title(); ?></a><span class="genericon genericon-external"></span></p>
+		<p class="link-format-link"><a href="<?php echo osc_post_format_link_get_url($post->ID); ?>" target="_blank" title="Link to <?php the_title(); ?>"><?php the_title(); ?></a><span class="fa fa-lg fa-external-link"></span></p>
 		<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'oystershell' ) ); ?>
 	</div>
 </div><!-- .entry-content -->
