@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * Functions hooked to actions or filters.
  *
@@ -247,82 +247,42 @@ if ( ! function_exists( 'oystershell_display_no_results' ) ) :
 function oystershell_display_no_results() {
 
 ?>
-	<header class="entry-header">
-		<h1 class="entry-title"><?php _e( 'Nothing Found', 'oystershell' ); ?></h1>
+	<header class="row entry-header">
+		<div class="small-12 columns">
+			<h1 class="entry-title"><?php _e( 'Nothing Found', 'oystershell' ); ?></h1>
+		</div>
 	</header><!-- .entry-header -->
 
-	<div class="entry-content">
-		<?php if ( is_home() ) : ?>
+	<div class="row entry-content">
+		<div class="small-12 columns">
+			<?php if ( is_home() ) : ?>
 
-			<p><?php printf( __( 'Ready to publish your first post? <a href="%1$s">Get started here</a>.', 'oystershell' ), admin_url( 'post-new.php' ) ); ?></p>
+				<p><?php printf( __( 'Ready to publish your first post? <a href="%1$s">Get started here</a>.', 'oystershell' ), admin_url( 'post-new.php' ) ); ?></p>
 
-		<?php elseif ( is_search() ) : ?>
+			<?php elseif ( is_search() ) : ?>
 
-			<p><?php _e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'oystershell' ); ?></p>
-			<?php get_search_form(); ?>
+				<p><?php _e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'oystershell' ); ?></p>
+				<?php get_search_form(); ?>
 
-		<?php else : ?>
+			<?php else : ?>
 
-			<p><?php _e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'oystershell' ); ?></p>
-			<?php get_search_form(); ?>
+				<p><?php _e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'oystershell' ); ?></p>
+				<?php get_search_form(); ?>
 
-		<?php endif; ?>
+			<?php endif; ?>
+		</div>
 	</div><!-- .entry-content -->
+
+	<footer class="row entry-footer">
+		<div class="small-12 columns entry-meta">
+		</div><!-- .entry-meta -->
+	</footer><!-- .entry-footer -->
+
 <?php
 }
 endif; // oystershell_display_no_results
 add_action( 'oystershell_no_results', 'oystershell_display_no_results' );
-
-//------------------------------------------------------------------------------------
-if ( ! function_exists( 'oystershell_display_404' ) ) :
-/**
- * Displays the content for a 404 page.
- *
- * @since Oystershell 1.0
- */
-function oystershell_display_404() {
-
-?>
-	<header class="page-header">
-		<h1 class="page-title"><?php _e( 'Oops! That page can&rsquo;t be found.', 'oystershell' ); ?></h1>
-	</header><!-- .page-header -->
-
-	<div class="entry-content clearfix" itemprop="mainContentOfPage">
-		<p><?php _e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'oystershell' ); ?></p>
-	</div><!-- .entry-content -->
-
-	<section class="widget">
-		<h1 class="widget-title"><?php _e( 'Search', 'oystershell' ); ?></h1>
-		<?php get_search_form(); ?>
-	</section><!-- .widget -->
-
-	<?php the_widget( 'WP_Widget_Recent_Posts' ); ?>
-
-	<section class="widget">
-		<h1 class="widget-title"><?php _e( 'Most Used Categories', 'oystershell' ); ?></h1>
-		<ul>
-		<?php wp_list_categories( array( 'orderby' => 'count', 'order' => 'DESC', 'show_count' => 1, 'title_li' => '', 'number' => 10 ) ); ?>
-		</ul>
-	</section><!-- .widget -->
-
-	<section class="widget">
-		<h1 class="widget-title"><?php _e( 'Pages', 'oystershell' ); ?></h1>
-	        <ul>
-	        <?php
-	        // Add pages you'd like to exclude in the exclude here
-	        wp_list_pages(
-	          array(
-	            'exclude' => '',
-	            'title_li' => '',
-	          )
-	        );
-	        ?>
-	        </ul>
-		</section><!-- .widget -->
-<?php
-}
-endif; // oystershell_display_404
-add_action( 'oystershell_404', 'oystershell_display_404' );
+add_action( 'oystershell_404', 'oystershell_display_no_results' );
 
 //------------------------------------------------------------------------------------
 if ( ! function_exists( 'oystershell_display_postscript' ) ):

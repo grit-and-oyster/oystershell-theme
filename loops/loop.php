@@ -49,10 +49,13 @@
 
 			<?php else: ?>
 
-				<div id="post-0" class="post no-results not-found">
-
-					<?php oystershell_no_results(); ?>
-
+				<div id="post-0" class="post no-results not-found hentry">
+					<div class="post-divider">
+						<?php oystershell_post_divider(); ?>
+					</div><!-- .post-divider -->
+					<article class="post-entry">
+						<?php oystershell_no_results(); ?>
+					</article><!-- .post-entry -->
 				</div><!-- #post-0 .post .no-results .not-found -->
 
 			<?php endif; ?>
