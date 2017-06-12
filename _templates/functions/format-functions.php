@@ -33,7 +33,7 @@ function oystershell_blockgrid_gallery( $output, $atts, $instance ) {
 	if ( empty( $attachments ) )
 		return '';
 
-	$output = '<div class="row small-up-2 medium-up-' . intval( $atts[ 'columns' ] ) . '" >';
+	$output = '<div class="os-gallery row small-up-2 medium-up-' . intval( $atts[ 'columns' ] ) . '" >';
 
 	foreach ( $attachments as $id => $attachment ) {
 		$img        = wp_get_attachment_image_url( $id, $atts[ 'size' ] );
