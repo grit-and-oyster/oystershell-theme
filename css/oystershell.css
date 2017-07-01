@@ -127,9 +127,15 @@
  	width: 100%;
  }
  .os-gallery img.th {
-   margin-bottom: .9375rem;
+  clear: both;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: .9375rem;
  }
- 
+ .os-gallery .wp-caption-text {
+  margin-bottom: .9375rem;
+ }
+
  /*--------------------------------------------------------------
  3 Navigation Menus
  --------------------------------------------------------------*/

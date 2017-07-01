@@ -15,6 +15,7 @@ function oystershell_blockgrid_gallery( $output, $atts, $instance ) {
 		'size'    => 'thumbnail',
 		'include' => '',
 		'exclude' => '',
+		'link'		=> '',
 		), $atts );
 
 	if ( ! empty( $atts['include'] ) ) {
@@ -38,14 +39,32 @@ function oystershell_blockgrid_gallery( $output, $atts, $instance ) {
 	foreach ( $attachments as $id => $attachment ) {
 		$img        = wp_get_attachment_image_url( $id, $atts[ 'size' ] );
 		$img_srcset = wp_get_attachment_image_srcset( $id, $atts[ 'size' ] );
-		$img_full   = wp_get_attachment_image_url( $id, 'full' );
+		switch ($atts[ 'link' ]) {
+			case 'file':
+				$img_url = wp_get_attachment_image_url( $id, 'full' );
+				$link01 = '<a href="' . esc_url( $img_url ) . '">';
+				$link02 = '</a>';
+				break;
+			case 'none':
+				$link01 = '';
+				$link02 = '';
+				break;
+			default:
+				$img_url = get_attachment_link( $id );
+				$link01 = '<a href="' . esc_url( $img_url ) . '">';
+				$link02 = '</a>';
+				break;
+		}
 
-		$caption = ( ! $attachment->post_excerpt ) ? '' : ' data-caption="' . esc_attr( $attachment->post_excerpt ) . '" ';
+		$data_caption = ( ! $attachment->post_excerpt ) ? '' : ' data-caption="' . esc_attr( $attachment->post_excerpt ) . '" ';
+		$caption = ( ! $attachment->post_excerpt ) ? '' : '<div class="wp-caption-text">' . esc_attr( $attachment->post_excerpt ) . '</div>';
 
 		$output .= '<div class="column">'
-			. '<a href="' . esc_url( $img_full ) . '">'
-			. '<img src="' . esc_url( $img ) . '" ' . $caption . ' class="th" alt="' . esc_attr( $attachment->title ) . '"  srcset="' . esc_attr( $img_srcset ) . '" sizes="(max-width: 50em) 87vw, 680px" />'
-			. '</a></div>';
+			. $link01
+			. '<img src="' . esc_url( $img ) . '" ' . $data_caption . ' class="th" alt="' . esc_attr( $attachment->title ) . '"  srcset="' . esc_attr( $img_srcset ) . '" sizes="(max-width: 50em) 87vw, 680px" />'
+			. $link02
+			. $caption
+			. '</div>';
 	}
 
 	$output .= '</div>';
