@@ -160,6 +160,42 @@ endif; // oystershell_display_header_meta
 add_action( 'oystershell_header_meta', 'oystershell_display_header_meta' );
 
 //------------------------------------------------------------------------------------
+if ( ! function_exists( 'oystershell_display_attachment' ) ):
+/**
+ * Handle the display of attachments
+ *
+ * @since Oystershell 1.1
+ */
+function oystershell_display_attachment() {
+   	global $post;
+    if ( wp_attachment_is_image() ) {
+      $thumbnail = wp_get_attachment_thumb_url();
+    } else {
+      $thumbnail = wp_mime_type_icon( $post->post_mime_type );
+    }
+    $url = wp_get_attachment_url();
+    ?>
+    <div class="os-attachment">
+      <div class="os-attachment-thumbnail">
+        <a href="<?php echo esc_url($url); ?>" title="<?php echo esc_attr( get_the_title() ); ?>" rel="attachment" class="attachment-link">
+          <img src="<?php echo esc_url( $thumbnail ); ?>" alt="<?php esc_attr( $post->title ) ?>" />
+        </a>
+      </div>
+      <div class="wp-caption-text">
+        <?php echo esc_attr( $post->post_excerpt ); ?>
+      </div>
+      <div class="os-attachment-link">
+        <p><i class="fa fa-lg fa-download" aria-hidden="true"></i> <a href="<?php echo esc_url($url); ?>" title="<?php echo esc_attr( get_the_title() ); ?>" rel="attachment" class="attachment-link">Download File</a></p>
+      </div>
+    </div><!-- .os-attachment -->
+    <?php echo wpautop(esc_html($post->post_content));
+    oystershell_content_nav( 'nav-attach' );
+}
+endif; // oystershell_display_other_attachment
+add_action( 'oystershell_other_attachment', 'oystershell_display_attachment' );
+
+
+//------------------------------------------------------------------------------------
 if ( ! function_exists( 'oystershell_display_image_attachment' ) ):
 /**
  * Handle image attachments
@@ -168,52 +204,36 @@ if ( ! function_exists( 'oystershell_display_image_attachment' ) ):
  */
 function oystershell_display_image_attachment() {
    	global $post;
-	/**
-	 * Grab the IDs of all the image attachments in a gallery so we can get the URL of the next adjacent image in a gallery,
-	 * or the first image (if we're looking at the last image in a gallery), or, in a gallery of one, just the link to that image file
-	 */
-	$attachments = array_values( get_children( array( 'post_parent' => $post->post_parent, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => 'ASC', 'orderby' => 'menu_order ID' ) ) );
-	foreach ( $attachments as $k => $attachment ) {
-		if ( $attachment->ID == $post->ID )
-			break;
-	}
-	$k++;
-	// If there is more than 1 attachment in a gallery
-	if ( count( $attachments ) > 1 ) {
-		if ( isset( $attachments[ $k ] ) )
-			// get the URL of the next image attachment
-			$next_attachment_url = get_attachment_link( $attachments[ $k ]->ID );
-		else
-			// or get the URL of the first image attachment
-			$next_attachment_url = get_attachment_link( $attachments[ 0 ]->ID );
-	} else {
-		// or, if there's only 1 image, get the URL of the image
-		$next_attachment_url = wp_get_attachment_url();
-	} ?>
+    ?>
 
-	<a href="<?php echo $next_attachment_url; ?>" title="<?php echo esc_attr( get_the_title() ); ?>" rel="attachment"><?php
-		$attachment_size = apply_filters( 'oystershell_attachment_size', array( 1200, 1200 ) ); // Filterable image size.
-		echo wp_get_attachment_image( $post->ID, $attachment_size ); ?></a><?php
+    <div class="os-attachment">
+      <div class="os-attachment-image">
+        <?php $attachment_size = apply_filters( 'oystershell_attachment_size', array( 1200, 1200 ) ); // Filterable image size.
+        echo wp_get_attachment_image( $post->ID, $attachment_size ); ?>
+      </div>
+      <div class="wp-caption-text">
+        <?php echo esc_attr( $post->post_excerpt ); ?>
+      </div>
+      <?php oystershell_content_nav( 'nav-attach' ); ?>
+    </div><!-- .os-attachment -->
+    <?php echo wpautop(esc_html($post->post_content)); ?>
+    <p class='os-attachment-resolutions'>Downloads:
+		<?php
+			$images = array();
+			$image_sizes = get_intermediate_image_sizes();
+			array_unshift( $image_sizes, 'full' );
+			foreach( $image_sizes as $image_size ) {
+				$image = wp_get_attachment_image_src( get_the_ID(), $image_size );
+				$name = $image_size . ' (' . $image[1] . 'x' . $image[2] . ')';
+				$images[] = '<i class="fa fa-download" aria-hidden="true"></i> <a href="' . $image[0] . '">' . $name . '</a>';
+			}
+			echo implode( ' | ', $images );
+		?>
+		</p>
+<?php
 }
 endif; // oystershell_display_image_attachment
 add_action( 'oystershell_image_attachment', 'oystershell_display_image_attachment' );
-
-//------------------------------------------------------------------------------------
-if ( ! function_exists( 'oystershell_display_other_attachment' ) ):
-/**
- * Handle non-image attachments
- *
- * @since Oystershell 1.0
- */
-function oystershell_display_other_attachment() {
-   	global $post;
-
-	$attachment_url = wp_get_attachment_url(); ?>
-
-	<a href="<?php echo $attachment_url; ?>" title="<?php echo esc_attr( get_the_title() ); ?>" rel="attachment" class="attachment-link">Link to the file</a><?php
-}
-endif; // oystershell_display_other_attachment
-add_action( 'oystershell_other_attachment', 'oystershell_display_other_attachment' );
 
 //------------------------------------------------------------------------------------
 if ( ! function_exists( 'oystershell_display_footer_meta' ) ) :

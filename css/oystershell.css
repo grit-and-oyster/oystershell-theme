@@ -126,14 +126,19 @@
  	clear: both;
  	width: 100%;
  }
+ .os-attachment img,
  .os-gallery img.th {
   clear: both;
   display: block;
   margin: 0 auto;
   margin-bottom: .9375rem;
  }
+ .os-attachment .wp-caption-text,
  .os-gallery .wp-caption-text {
   margin-bottom: .9375rem;
+ }
+ .os-attachment-link p {
+  text-align: center;
  }
 
  /*--------------------------------------------------------------

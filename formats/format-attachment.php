@@ -17,23 +17,7 @@
 
 <div class="row entry-content" itemprop="mainContentOfPage">
 	<div class="small-12 columns">
-		<div class="entry-attachment">
-			<div class="attachment">
-				<?php oystershell_other_attachment(); ?>
-			</div><!-- .attachment -->
-
-			<?php if ( ! empty( $post->post_excerpt ) ) : ?>
-			<div class="entry-caption">
-				<?php the_excerpt(); ?>
-			</div><!-- .entry-caption -->
-			<?php endif; ?>
-		</div><!-- .entry-attachment -->
-		<?php the_content(); ?>
-		<?php if ( oystershell_is_paginated_post() ) { ?>
-			<div class="page-links">
-				<?php wp_link_pages(); ?>
-			</div><!-- .page-links -->
-		<?php } // end if ?>
+		<?php oystershell_other_attachment(); ?>
 	</div>
 </div><!-- .entry-content -->
 

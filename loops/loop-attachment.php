@@ -26,8 +26,6 @@
 					</article><!-- .post-entry -->
 				</div><!-- #post-<?php the_ID(); ?> -->
 
-				<?php oystershell_content_nav( 'nav-attach' ); ?>
-
 				<?php oystershell_comments(); ?>
 
 			<?php endwhile; // end of the loop. ?>

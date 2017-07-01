@@ -57,9 +57,9 @@ if ( ! function_exists( 'oystershell_content_nav_links_attachment' ) ):
  */
 function oystershell_content_nav_links_attachment() { ?>
 
-	<nav id="image-navigation">
-		<span class="previous-image"><?php previous_image_link( false, __( '&larr; Previous', 'oystershell' ) ); ?></span>
-		<span class="next-image"><?php next_image_link( false, __( 'Next &rarr;', 'oystershell' ) ); ?></span>
+	<nav role="navigation" class="site-navigation post-navigation attachment-navigation">
+		<span class="nav-previous"><?php previous_image_link( false, __( '&larr; Previous', 'oystershell' ) ); ?></span>
+		<span class="nav-next"><?php next_image_link( false, __( 'Next &rarr;', 'oystershell' ) ); ?></span>
 	</nav><!-- #image-navigation -->
 <?php }
 endif; // oystershellcontent_nav_links_attachment
@@ -248,32 +248,29 @@ function oystershell_attachment_meta() {
 	global $post;
 ?>
 	<p>
-		<?php
-
-		if ( wp_attachment_is_image() ) {
-			$metadata = wp_get_attachment_metadata();
-			printf( __( 'Published <span class="entry-date"><time class="entry-date" datetime="%1$s" pubdate>%2$s</time></span> at <a href="%3$s" title="Link to full-size image">%4$s &times; %5$s</a> in <a href="%6$s" title="Return to %7$s" rel="gallery">%7$s</a>', 'oystershell' ),
-				esc_attr( get_the_date( 'c' ) ),
-				esc_html( get_the_date() ),
-				wp_get_attachment_url(),
-				$metadata['width'],
-				$metadata['height'],
-				get_permalink( $post->post_parent ),
-				get_the_title( $post->post_parent )
-			);
-		} else {
-			$metadata = wp_get_attachment_metadata();
-			printf( __( 'Published <span class="entry-date"><time class="entry-date" datetime="%1$s" pubdate>%2$s</time></span> in <a href="%3$s" title="Return to %4$s">%4$s</a>', 'oystershell' ),
-				esc_attr( get_the_date( 'c' ) ),
-				esc_html( get_the_date() ),
-				get_permalink( $post->post_parent ),
-				get_the_title( $post->post_parent )
-			);
-		}
-		?>
-		<?php edit_post_link( __( 'Edit', 'oystershell' ), '<span class="sep"> | </span> <span class="edit-link">', '</span>' ); ?>
+		<?php oystershell_meta_pubdate( '<span class="meta-pubdate">Posted on ', '</span>'); ?>
+		<?php printf( __( 'and attached to <a href="%1$s" title="Return to %2$s">%2$s</a>', 'oystershell' ),
+			get_permalink( $post->post_parent ),
+			get_the_title( $post->post_parent )
+		); ?>
+		<?php edit_post_link( __( 'Edit', 'oystershell' ), '<span class="sep"> | </span><span class="edit-link">', '</span>' ); ?>
 	</p>
-<?php
+	<?php if ( wp_attachment_is_image() ) {
+		$meta = wp_get_attachment_metadata($id);
+		echo '<p>';
+		echo "Resolution: ".$meta[width]." x ".$meta[height]."<br />";
+		$timestamped = $meta[image_meta][created_timestamp];
+		$created_timestamp = date( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), $timestamped);
+		echo "Created:  ".$created_timestamp."<br />";
+    echo "Credit:  ".$meta[image_meta][credit]."<br /> ";
+   	echo "Camera:  ".$meta[image_meta][camera]."<br />";
+    echo "Focal length:  ".$meta[image_meta][focal_length]."<br />";
+ 		echo "Aperture:  ".$meta[image_meta][aperture]."<br />";
+ 		echo "ISO:  ".$meta[image_meta][iso]."<br />";
+ 		echo "Shutter speed:  ".$meta[image_meta][shutter_speed]."<br />";
+		echo "Copyright:  ".$meta[image_meta][copyright];
+		echo '<p>';
+	}
 	jptweak_display_share();
 }
 endif;
