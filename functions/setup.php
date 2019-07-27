@@ -147,6 +147,32 @@ function oystershell_theme_support() {
 		'gallery',
 		'caption',
 	) );
+
+	/**
+	 * Add support for custom headers
+	 *
+	 */
+	$custom_headers_args = array(
+			'width'              => 1200,
+			'height'             => 125,
+			'flex-width'         => true,
+			'flex-height'        => true,
+			'uploads'						 => true,
+	);
+	//add_theme_support( 'custom-header', $custom_headers_args );
+
+	/**
+	 * Add support for custom logos
+	 *
+	 */
+	 $custom_logo_args = array(
+		 'height'      => 250,
+		 'width'       => 250,
+		 'flex-height' => true,
+		 'flex-width'  => true,
+	 );
+	 //add_theme_support( 'custom-logo', $custom_logo_args );
+
 }
 
 //------------------------------------------------------------------------------------

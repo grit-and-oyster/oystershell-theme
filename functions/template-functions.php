@@ -15,12 +15,38 @@ if ( ! function_exists( 'oystershell_display_masthead' ) ):
  */
 function oystershell_display_masthead() {
 
-?> 	<hgroup>
-		<h1 class="assistive-text"><?php wp_title( '-', true, 'right' ); ?></h1>
-		<h2 class="site-title"><a href="<?php echo home_url( '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h2>
-		<h3 class="site-description"><?php bloginfo( 'description' ); ?></h3>
-	</hgroup>
-<?php
+	if ( current_theme_supports('custom-header') ) {
+		$header_text_display = display_header_text();
+		$header_text_style = 'style="color:#' . get_theme_mod( 'header_textcolor' ) . '"';
+	} else {
+		$header_text_display = true;
+		$header_text_style = '';
+	}
+
+	if ( get_header_image() ) :	?>
+	    <div id="site-header-image">
+				<img src="<?php header_image(); ?>" width="<?php echo absint( get_custom_header()->width ); ?>" height="<?php echo absint( get_custom_header()->height ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>">
+	    </div>
+	<?php endif;
+
+	if ( function_exists( 'the_custom_logo' ) ) :
+		if ( has_custom_logo() ) : ?>
+	    <div id="site-header-logo">
+				<?php the_custom_logo(); ?>
+			</div>
+	<?php endif;
+	endif;
+
+	if ( $header_text_display == true ) :
+	?>
+	   <div id="site-header-text" <?php echo $header_text_style; ?>>
+				<hgroup>
+					<h1 class="assistive-text"><?php wp_title( '-', true, 'right' ); ?></h1>
+					<h2 class="site-title"><a href="<?php echo home_url( '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home" <?php echo $header_text_style; ?>><?php bloginfo( 'name' ); ?></a></h2>
+					<h3 class="site-description"><?php bloginfo( 'description' ); ?></h3>
+				</hgroup>
+			</div>
+	<?php endif;
 
 }
 endif; // oystershell_display_masthead
