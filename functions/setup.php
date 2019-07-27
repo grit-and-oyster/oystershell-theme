@@ -10,11 +10,57 @@
  * @since Oyster Shell 1.0
  */
 
+add_action( 'after_switch_theme', 'oystershell_check_theme_dependencies', 10, 2 );
 add_action( 'after_setup_theme', 'oystershell_setup' );
 add_action( 'after_setup_theme', 'oystershell_start', 16);
-add_filter( 'post_class', 'remove_sticky_class');
 add_action( 'init', 'oystershell_add_excerpts_to_pages' );
+if( function_exists('osc_load_library_oystershell') ) { add_action( 'init', 'osc_load_library_oystershell', 0 ); }
 add_action( 'wp_head', 'oystershell_add_icons');
+
+add_filter( 'post_class', 'remove_sticky_class');
+
+//------------------------------------------------------------------------------------
+function oystershell_check_theme_dependencies( $oldtheme_name, $oldtheme ) {
+
+	$missing_dependencies = false;
+
+	if( ! function_exists('osc_load_library_oystershell') ) {
+		$missing_dependencies = true;
+	}
+
+  if ( $missing_dependencies ) :
+
+    // Update default admin notice: Theme not activated.
+    add_filter( 'gettext', 'oystershell_update_activation_admin_notice', 10, 3 );
+
+    // Custom styling for default admin notice.
+    add_action( 'admin_head', 'oystershell_error_activation_admin_notice' );
+
+    // Switch back to previous theme.
+    switch_theme( $oldtheme->stylesheet );
+      return false;
+
+  endif;
+}
+
+function oystershell_update_activation_admin_notice( $translated, $original, $domain ) {
+    // Strings to translate.
+    $strings = array(
+        'New theme activated.' => 'Theme cannot be activated. Please install and activate the Oystershell Core plugin before trying again.'
+    );
+
+    if ( isset( $strings[$original] ) ) {
+        // Translate but without running all the filters again.
+        $translations = get_translations_for_domain( $domain );
+        $translated = $translations->translate( $strings[$original] );
+    }
+
+    return $translated;
+}
+
+function oystershell_error_activation_admin_notice() {
+  echo '<style>#message2{border-left-color:#dc3232;}</style>';
+}
 
 //------------------------------------------------------------------------------------
 if ( ! function_exists( 'oystershell_setup' ) ):

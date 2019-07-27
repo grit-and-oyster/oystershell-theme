@@ -6,14 +6,6 @@
  * @since Oystershell 1.0
  */
 
-/**
- * Load the Oystershell Core library
- * Essential classes and helper functions for the Oystershell framework.
- *
- * @since Oystershell 1.1
- */
-add_action( 'init', 'osc_load_library_oystershell', 0 );
-
 // Set up the theme
 require_once(get_template_directory().'/functions/setup.php');
 
